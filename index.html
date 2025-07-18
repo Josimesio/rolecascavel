@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Contato</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, button { padding: 8px; width: 300px; margin-top: 5px; }
+    .success { color: green; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Cadastro de Contato</h1>
+  <form id="formulario">
+    <label>Nome: <input type="text" name="nome" required></label>
+    <label>E-mail: <input type="email" name="email" required></label>
+    <label>Telefone: <input type="text" name="telefone" required></label>
+    <button type="submit">Enviar</button>
+  </form>
+  <div id="mensagem" class="success"></div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/u/0/home/projects/1jhiPPrSR_lyxpdkuPiXBuBmwzZjXHxjit-G4UXq5Y1XLokgTp4WnU8X_/edit';
+    const form = document.getElementById('formulario');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => {
+        mensagem.innerHTML = "Dados
